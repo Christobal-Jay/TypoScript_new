@@ -1,0 +1,48 @@
+/*
+For use in the terminal use:
+
+	export TYPO3_CONTEXT=Development
+
+For use in .htaccess use:
+
+SetEnv TYPO3_CONTEXT=Development
+or
+SetEnvIf _ .* TYPO3_CONTEXT=Development
+*/
+
+
+#[applicationContext = Development]
+
+config {
+	# absRefPrefix = http://dev.projekt.loc/
+
+	disablePrefixComment = 0
+	contentObjectExceptionHandler = 0
+	linkVars := addToList(debug(int))
+	admPanel = 1
+}
+
+page {
+	config {
+		debug = 1
+
+		admPanel = 0
+		concatenateJs = 0
+		compressJs = 0
+
+		concatenateCss = 0
+		compressCss = 0
+
+		contentObjectExceptionHandler = 0
+	}
+	10 {
+		settings {
+			typo3context = Development
+		}
+		variables {
+			debug = TEXT
+			debug.data = GP:debug
+		}
+	}
+}
+#[end]

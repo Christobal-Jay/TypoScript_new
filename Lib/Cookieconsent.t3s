@@ -1,0 +1,23 @@
+lib.cookieconsent = TEXT
+lib.cookieconsent.value (
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.4/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+	window.cookieconsent.initialise({
+	  "palette": {
+		"popup": {
+		  "background": "#000"
+		},
+		"button": {
+		  "background": "#f1d600"
+		}
+	  },
+	  "theme": "edgeless",
+	  "content": {
+		"href": "{$plugin.ot_bootstrap3.settings.domain}"
+	  }
+	})
+});
+</script>
+)

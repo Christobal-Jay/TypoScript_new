@@ -1,0 +1,12 @@
+/**
+ * Uncached date and time
+ *
+ * Only an example, better use <f:format.date> and a Unix-Timestamp
+ */
+lib.currentTime = COA_INT
+lib.currentTime {
+	10 = TEXT
+	10.stdWrap {
+		data = date: d.m.Y H:i:s
+	}
+}

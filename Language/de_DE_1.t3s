@@ -1,0 +1,17 @@
+/**
+ * All settings for one language in one file, to avoid to many cache entries
+ */
+
+# todo Enable condition, if english is the default language and german the first foreign language
+
+#[globalVar = GP:L=1]
+config {
+	language = de
+
+	# since TYPO3 8 LTS @see http://php.net/setlocale
+	locale_all = de_DE.utf8, de_DE, german
+
+#	sys_language_uid = 1
+	sys_language_content = de
+}
+#[global]

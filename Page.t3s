@@ -1,0 +1,506 @@
+/**
+ * Page Setup for Bootstrap3 Basis Template
+ *
+ * @author Oliver Thiele <mailYYYY@oliver-thiele.de>
+ */
+page = PAGE
+page {
+	config {
+		admPanel = 0
+		debug = 0
+
+		spamProtectEmailAddresses = -2
+		spamProtectEmailAddresses_atSubst = <script type="text/javascript">document.write('&#64;');</script>
+		spamProtectEmailAddresses_lastDotSubst = .<span class="sr-only">LÖSCHEN.</span>
+
+		concatenateJs = 1
+		compressJs = 1
+		concatenateCss = 1
+		compressCss = 1
+
+		contentObjectExceptionHandler = 1
+	}
+	meta {
+		viewport = width=device-width, initial-scale=1
+
+		#  max. 155 characters (512px) for Google
+		description.data = TSFE:page|description
+
+		author.data = TSFE:page|author
+
+		#  For internal search extensions, not for Google
+		keywords {
+			data = TSFE:page|keywords
+			keywords = 1
+		}
+		robots = index, follow
+	}
+	includeCSSLibs {
+
+		bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
+		bootstrap {
+			external = 1
+			# Important, fonts are included with ../fonts/ !
+			disableCompression = 1
+			excludeFromConcatenation = 1
+			forceOnTop = 1
+		}
+
+		# WebFont
+		# @see https://fonts.google.com/s
+		# @todo overwrite in theme extension
+		webFont1 = https://fonts.googleapis.com/css?family=Open+Sans|Roboto
+		webFont1.external = 1
+
+
+		# Icons
+		# @see https://fortawesome.github.io/Font-Awesome/
+		fontAwesome = https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+		fontAwesome {
+			external = 1
+			disableCompression = 1
+			excludeFromConcatenation = 1
+		}
+
+		# @see http://dimsemenov.com/plugins/magnific-popup/
+		magnificPopup = EXT:ot_bootstrap3/Resources/Public/Vendor/Magnific-Popup/dist/magnific-popup.css
+
+		animate = typo3conf/ext/ot_bootstrap3/Resources/Public/Vendor/animate.css/animate.min.css
+		animate {
+			disableCompression = 1
+			excludeFromConcatenation = 1
+		}
+
+		slickSlider = typo3conf/ext/ot_bootstrap3/Resources/Public/Vendor/slick-1.6.0/slick/slick.min.css
+		slickSlider {
+			disableCompression = 1
+			excludeFromConcatenation = 1
+		}
+		slickSlider2 = typo3conf/ext/ot_bootstrap3/Resources/Public/Vendor/slick-1.6.0/slick/slick-theme.min.css
+		slickSlider2 {
+			disableCompression = 1
+			excludeFromConcatenation = 1
+		}
+
+		otBootstrap3 = typo3conf/ext/ot_bootstrap3/Resources/Public/Css/OtBootstrap3.css
+	}
+
+	includeCSS {
+		myStyles = EXT:ot_bootstrap3/Resources/Public/Css/MyStyles.css
+		terminal = EXT:ot_bootstrap3/Resources/Public/Css/Terminal.css
+		focusPoint = EXT:ot_bootstrap3/Resources/Public/Vendor/jquery-focuspoint/css/focuspoint.css
+	}
+
+	headerData {
+		# HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+		10 = TEXT
+		10.value (
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<link type="text/css" media="screen" rel="stylesheet" href="typo3conf/ext/ot_bootstrap3/Resources/Public/Css/style.css"/>
+		<!-- Responsive CSS -->
+		<link type="text/css" media="screen" rel="stylesheet" href="typo3conf/ext/ot_bootstrap3/Resources/Public/Css/theme-responsive.css"/>
+
+		)
+
+		/**
+
+		* DNS Prefetching
+		 *
+		 * DNS prefetching  is a feature by which browsers proactively performs domain name resolution on both links
+		 * that the user may choose to follow as well as URLs for items referenced by the document,
+		 * including images, CSS, JavaScript, and so forth.
+ 		 *
+		 * This prefetching is performed in the background, so that the DNS is likely to already have been resolved by
+		 * the time the referenced items are actually needed.  This reduces latency when, for example,
+		 * the user actually clicks a link.
+		 *
+		 * Background
+		 *
+		 * DNS requests are very small in terms of bandwidth, but latency can be quite high, especially on mobile
+		 * networks. By speculatively prefetching DNS results, latency when, for example, the user clicks a link can be
+		 * reduced significantly (on the order of a second, in some cases).
+ 		 *
+		 * The implementation of this prefetching in Firefox allows domain name resolution to occur in parallel with
+		 * (instead of in serial with) the fetching of actual page content.  By doing this, the high latency domain name
+		 * resolution process doesn't cause delays during the process of fetching content.
+ 		 *
+		 * Page load times -- especially on mobile networks -- can be measurably improved this way.  If the domain names
+		 * for images can be resolved in advance of the images being requested, pages that load a number of images can
+		 * see a load time improvement of 5% or more.
+		*/
+		20 = TEXT
+		20 {
+			value (
+<link rel="dns-prefetch" href="https://oss.maxcdn.com" />
+<link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com" />
+<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+			)
+		}
+
+		30 = TEXT
+		30 {
+			stdWrap {
+				orderedStdWrap {
+					10.typolink {
+						# Aktuelle Seite
+						parameter.data = TSFE:id
+						# Gib nur die URL zurück
+						returnLast = url
+						# Erstelle eine absolute URL
+						forceAbsoluteUrl = 1
+						# Fügt alle GET-Parameter hinzu, wie z.B. tt_news, L und auch cHash
+						addQueryString = 1
+						addQueryString.method = GET
+						# Schliesst bestimmte Parameter aus, z.B. cHash oder auch backPid von tt_news
+						addQueryString.exclude = cHash,backPid
+						htmlSpecialChars = 1
+					}
+					20.htmlSpecialChars = 1
+					30.override.field = canonical_url
+					40.wrap = <link rel="canonical" href="|" />
+				}
+			}
+		}
+
+		40 < lib.cookieconsent
+	}
+
+	# @see https://srihash.org
+	includeJSFooterlibs {
+
+		jQuery = https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js
+		jQuery {
+			integrity = sha384-rY/jv8mMhqDabXSo+UCggqKtdmBfd3qC2/KvyTDNQ6PcUJXaxK1tMepoQda4g5vB
+			external = 1
+			forceOnTop = 1
+			disableCompression = 1
+			excludeFromConcatenation = 1
+		}
+
+		bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+		bootstrap {
+			external = 1
+			disableCompression = 1
+			excludeFromConcatenation = 1
+		}
+
+		slickSlider = https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js
+		slickSlider {
+			integrity = sha384-ZULtytbCZdmL8PeKalcAKnseGOqrCiPBi3DiB7s4JJmS8gjSbfw0w8SPKpt9WemG
+			external = 1
+			disableCompression = 1
+			excludeFromConcatenation = 1
+		}
+
+		# @see https://github.com/jonom/jquery-focuspoint
+		focusPoint = EXT:ot_bootstrap3/Resources/Public/Vendor/jquery-focuspoint/js/jquery.focuspoint.min.js
+
+		magnificPopup = EXT:ot_bootstrap3/Resources/Public/Vendor/Magnific-Popup/dist/jquery.magnific-popup.min.js
+
+		fitVids = EXT:ot_bootstrap3/Resources/Public/Js/FluidVids.min.js
+
+		ie10ViewportBugWorkaround = EXT:ot_bootstrap3/Resources/Public/Js/Ie10ViewportBugWorkaround.js
+		# Waypoint
+		animate =EXT:ot_bootstrap3/Resources/Public/Js/Animate.js
+	}
+
+	includeJSFooter {
+		myScripts = EXT:ot_bootstrap3/Resources/Public/Js/MyScripts.js
+	}
+
+
+	3000 = TEXT
+	3000.value (
+
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/jquery-1.11.1.min.js" ></script>
+
+	<!-- ======================= JQuery libs =========================== -->
+	<!-- jQuery local-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/jquery.js"></script>
+	<!--Nav-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/nav/tinynav.js"></script>
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/nav/superfish.js"></script>
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/nav/hoverIntent.js"></script>
+	<script src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/nav/jquery.sticky.js" type="text/javascript"></script>
+	<!--Totop-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/totop/jquery.ui.totop.js" ></script>
+	<!--Slide Revolution-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/rs-plugin/js/jquery.themepunch.plugins.min.js" ></script>
+	<script type='text/javascript' src='typo3conf/ext/ot_bootstrap3/Resources/Public/Js/rs-plugin/js/jquery.themepunch.revolution.js'></script>
+	<!--Ligbox-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/fancybox/jquery.fancybox.js"></script>
+	<!-- carousel.js-->
+	<script src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/carousel/carousel.js"></script>
+	<!-- Twitter Feed-->
+	<script src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/twitter/jquery.tweet.js"></script>
+	<!-- flickr Feed-->
+	<script src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/flickr/jflickrfeed.js"></script>
+	<!--Scroll-->
+	<script src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- Maps -->
+	<script src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/maps/gmap3.js"></script>
+	<!-- Filter -->
+	<script src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/filters/jquery.isotope.js" type="text/javascript"></script>
+	<!-- Parallax-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/parallax/jquery.inview.js"></script>
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/parallax/nbw-parallax.js"></script>
+	<!--Theme Options-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/theme-options/theme-options.js"></script>
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/theme-options/jquery.cookies.js"></script>
+	<!-- Bootstrap.js-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/bootstrap/bootstrap.js"></script>
+	<!--MAIN FUNCTIONS-->
+	<script type="text/javascript" src="typo3conf/ext/ot_bootstrap3/Resources/Public/Js/main.js"></script>
+	<!-- ======================= End JQuery libs =========================== -->
+
+	<script type="text/javascript">
+    var revapi;
+    jQuery(document).ready(function() {
+        revapi = jQuery('.tp-banner').revolution(
+            {
+                delay:9000,
+                startwidth:1170,
+                startheight:580,
+                spinner:"spinner4",
+                hideThumbs:10,
+                fullWidth:"on",
+                navigationType:"none",
+                navigationArrows:"solo",
+                navigationStyle:"preview4",
+                forceFullWidth:"on"
+            });
+    });
+	</script>
+
+	)
+
+
+
+	bodyTagCObject = COA
+	bodyTagCObject {
+		10 = TEXT
+		10 {
+			value = <body id="page-{TSFE:id}" class="
+			stdWrap.insertData = 1
+		}
+
+		20 < lib.templateName
+		20.stdWrap {
+			case = lower
+			noTrimWrap = |be-layout-||
+		}
+
+		30 = CASE
+		30 {
+			key.data = TSFE:page|layout
+
+			# @fixme white and black are only examples!
+			# @see EXT:ot_bootstrap3/Configuration/PageTS/PageTSconfigFile.t3s
+			0 = TEXT
+			0.value = white
+
+			1 = TEXT
+			1.value = black
+
+			default < .0
+			stdWrap.noTrimWrap = | layout-||
+		}
+
+		40 = CASE
+		40 {
+			key.data = TSFE:sys_language_uid
+			stdWrap {
+				required = 1
+				noTrimWrap = | language-||
+			}
+
+			1 = TEXT
+			1.value = de
+
+			default = TEXT
+			default.value = de
+		}
+
+		50 = TEXT
+		50.stdWrap {
+			data = GP:type
+			required = 1
+			noTrimWrap = | type-||
+		}
+		51 = TEXT
+		51.value = "
+
+		100 = TEXT
+		100.value = >
+	}
+
+	10 = FLUIDTEMPLATE
+	10 {
+		extbase.controllerExtensionName = OtBootstrap3
+		templateName < lib.templateName
+
+		layoutRootPaths {
+			0 = EXT:ot_bootstrap3/Resources/Private/Layouts
+		}
+		partialRootPaths {
+			0 = EXT:ot_bootstrap3/Resources/Private/Partials
+		}
+		templateRootPaths {
+			0 = EXT:ot_bootstrap3/Resources/Private/Templates
+		}
+
+		dataProcessing {
+			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+			10 {
+				references.fieldName = media
+				as = media
+
+			}
+			20 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+			20 {
+				special = directory
+				special.value = 1
+				levels = 7
+				as = menu
+				expandAll = 1
+				includeSpacer = 1
+				titleField = nav_title // title
+#				dataProcessing {
+#					10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+#					10 {
+#						references.fieldName = media
+#					}
+#				}
+			}
+		}
+		settings {
+			projectName = {$plugin.ot_bootstrap3.settings.projectName}
+			homepageUid = {$plugin.ot_bootstrap3.settings.homepageUid}
+			showPageHeaderAsH1 = {$plugin.ot_bootstrap3.settings.showPageHeaderAsH1}
+		}
+		# Don't use USER_INT or COA_INT here!!! Cache-Headers will be disabled
+		variables {
+			content_0 = CONTENT
+			content_0 {
+				table = tt_content
+				select {
+					where = colPos=0
+					orderBy = sorting
+				}
+			}
+			content_1 < .content_0
+			content_1.select.where = colPos=1
+
+			content_2 < .content_0
+			content_2.select.where = colPos=2
+
+			content_3 < .content_0
+			content_3.select.where = colPos=3
+
+			content_4 < .content_0
+			content_4.select.where = colPos=4
+
+			content_5 < .content_0
+			content_5.select.where = colPos=5
+
+			content_8 < .content_0
+			content_8.select.where = colPos=8
+
+			# Footer (Content comes always from the homepage)
+			content_6 < .content_0
+			content_6.select {
+				where = colPos=6
+				pidInList = {$plugin.ot_bootstrap3.settings.homepageUid}
+			}
+
+			# Use the next lines, if the homepage has more than one footer column
+			content_7 < .content_6
+			content_7.select {
+				where = colPos=7
+				pidInList = {$plugin.ot_bootstrap3.settings.homepageUid}
+			}
+
+#			content_8 < .content_6
+#			content_8.select {
+#				where = colPos=8
+#				pidInList = {$plugin.ot_bootstrap3.settings.homepageUid}
+#			}
+#
+#			content_9 < .content_6
+#			content_9.select {
+#				where = colPos=9
+#				pidInList = {$plugin.ot_bootstrap3.settings.homepageUid}
+#			}
+		}
+	}
+}
+
+
+/**
+* HTML with head and body (for iFrames)
+*/
+contentOnly < page
+contentOnly {
+	typeNum = 112234
+	config {
+		admPanel = 0
+		debug = 0
+		linkVars := addToList(type(int))
+	}
+	10 {
+		templateName >
+		templateName = ContentOnly
+	}
+}
+
+
+/**
+ * HTML without head and body (for AJAX)
+ */
+contentElements = PAGE
+contentElements  {
+	typeNum = 112235
+	config {
+		admPanel = 0
+		debug = 0
+		disableAllHeaderCode = 1
+		linkVars := addToList(type(int))
+		disablePrefixComment = 1
+	}
+	10 < page.10
+	10 {
+		templateName >
+		templateName = ContentOnly
+	}
+}
+
+xml_content < tt_content.list.20
+xml_content = CASE
+xml_content.key.field = list_type
+
+xml  = PAGE
+xml {
+	typeNum = 100
+	config {
+		admPanel = 0
+		debug = 0
+		disableAllHeaderCode = 1
+		linkVars := removeFromList(type)
+		disablePrefixComment = 1
+		additionalHeaders = Content-type:text/xml; encoding=utf-8
+	}
+	10 = CONTENT
+	10 {
+		table = tt_content
+		renderObj =< xml_content
+		select {
+			where = colPos=0
+			orderBy = sorting
+		}
+	}
+}

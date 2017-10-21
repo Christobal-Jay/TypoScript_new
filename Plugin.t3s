@@ -1,0 +1,13 @@
+plugin {
+	tx_felogin_pi1 {
+		templateFile = EXT:ot_bootstrap3/Resources/Private/Templates/Ext/Felogin/Template.html
+		_CSS_DEFAULT_STYLE >
+	}
+	tx_form {
+		view {
+			templateRootPaths.20 = EXT:ot_bootstrap3/Resources/Private/Templates/Ext/Form/
+			partialRootPaths.20 = EXT:ot_bootstrap3/Resources/Private/Partials/Ext/Form/
+			layoutRootPaths.20 = EXT:ot_bootstrap3/Resources/Private/Layouts/Ext/Form/
+		}
+	}
+}

@@ -1,0 +1,42 @@
+/**
+ * Canonical URL
+ * With manual override of the automatically generated URL
+ */
+lib.canonical = COA
+lib.canonical {
+	1 = TEXT
+	1.stdWrap.char = 10
+
+	2 = TEXT
+	2.value = <link rel="canonical" href="
+
+	3 = TEXT
+	3.stdWrap {
+		if.isFalse.data = TSFE:page|canonical_url
+		typolink {
+			parameter.stdWrap {
+				data = {TSFE:uid}
+				# New syntax in TYPO3 8.7
+				wrap = t3://page?uid=|
+			}
+
+			useCacheHash = 1
+			# todo wenn GET-Parameter mit ausgegeben werden sollen, addQueryString = 1 setzen
+			addQueryString = 0
+			addQueryString.method = GET
+			addQueryString.exclude = id
+			returnLast = url
+			forceAbsoluteUrl = 1
+		}
+
+	}
+	4 = TEXT
+	4.stdWrap {
+		data = TSFE:page|canonical_url
+		if.isTrue.data = TSFE:page|canonical_url
+	}
+	10 = TEXT
+	10.value = " />
+}
+
+page.headerData.100 < lib.canonical

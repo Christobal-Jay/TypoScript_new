@@ -1,0 +1,157 @@
+/*
+
+<ul id="menu" class="sf-menu">
+<li>
+<a href="index.html">HOME <i class="fa fa-angle-down"></i></a>
+<ul>
+<li><a href="index.html">Home Corporate</a></li>
+
+</ul>
+</li>
+<li><a href="about-us.html">ABOUT<i class="fa fa-angle-down"></i></a>
+</li>
+<li>
+<a href="feature-princing-tables.html">FEATURES <i class="fa fa-angle-down"></i></a>
+<ul>
+<li><a href="page-sections-backgrounds.html">Sections Backgrounds</a></li>
+<li>
+<a href="#">Pages <i class="fa fa-angle-right"></i></a>
+<ul>
+<li><a href="page-register.html">Register User</a></li>
+
+</ul>
+</li>
+<li>
+<a href="#">Headers <i class="fa fa-angle-right"></i></a>
+<ul>
+<li><a href="feature-header-1.html">Header Version 1</a></li>
+
+</ul>
+</li>
+<li>
+<a href="#">Footers <i class="fa fa-angle-right"></i></a>
+<ul>
+<li><a href="feature-footer-1.html#footer">Footer Version 1</a></li>
+
+</ul>
+</li>
+<li><a href="feature-princing-tables.html">Princing Tables</a></li>
+
+</ul>
+</li>
+<li>
+<a href="work-4-columns.html">WORK <i class="fa fa-angle-down"></i></a>
+</li>
+<li>
+<a href="blog.html">BLOG <i class="fa fa-angle-down"></i></a>
+</li>
+<li><a href="contact.html">CONTACT</a></li>
+</ul>
+
+ */
+
+lib {
+	navigation = COA
+	navigation {
+		stdWrap.wrap = <ul id="menu" class="sf-menu">|</ul>
+
+		20 = HMENU
+		20 {
+			special = directory
+			special.value = 1
+
+			1 = TMENU
+			1 {
+				expAll = 1
+
+				#  wrap = <ul class="nav navbar-nav">|</ul>
+				NO = 1
+				NO {
+					wrapItemAndSub = <li>|</li>
+					stdWrap.htmlSpecialChars = 1
+					ATagTitle.data = TSFE:page|abstract // TSFE:page|description
+				}
+
+				CUR < .NO
+				CUR {
+					wrapItemAndSub = <li class="active">|</li>
+					linkWrap = | <span class="sr-only">(current)</span>
+				}
+
+				IFSUB < .NO
+				IFSUB {
+					wrapItemAndSub = <li class="dropdown">|</li>
+					doNotLinkIt = 1
+					linkWrap = <a data-toggle="dropdown" class="dropdown-toggle" href="#">| <b class="caret"></b></a>
+				}
+
+				CURIFSUB < .IFSUB
+				CURIFSUB {
+					wrapItemAndSub = <li class="dropdown active">|</li>
+				}
+
+				ACTIFSUB < .CURIFSUB
+				SPC = 1
+				SPC {
+					doNotLinkIt = 1
+					stdWrap.cObject = TEXT
+					linkWrap = </ul><ul class="nav navbar-nav navbar-right">
+				}
+			}
+			2 < .1
+			2 {
+				wrap = <ul>|</ul>
+				IFSUB >
+				CURIFSUB >
+				ACTIFSUB >
+				SPC >
+				SPC = 1
+				SPC {
+					wrapItemAndSub = <li role="separator" class="divider">|</li>
+					doNotLinkIt = 1
+					stdWrap.cObject = TEXT
+					stdWrap.cObject.value =
+				}
+			}
+		}
+	}
+}
+
+
+### Bottomnavigation ###
+lib.navigation_level2 = HMENU
+lib.navigation_level2 {
+	special = directory
+	special.value = 9
+	1 = TMENU
+	1 {
+		expAll = 1
+		wrap = <ul class="menu-footer">|</ul>
+		NO = 1
+		NO {
+			wrapItemAndSub =<li>|</li>
+			ATagParams = class=""
+		}
+
+		IFSUB = 1
+		IFSUB {
+			wrapItemAndSub =<li>|</li>
+		}
+		CURIFSUB =1
+		CURIFSUB {
+			wrapItemAndSub =<li>|</li>
+		}
+		ACT = 1
+		ACT {
+			wrapItemAndSub =<li>|</li>
+			ATagParams = class=""
+		}
+		ACTIFSUB = 1
+		ACTIFSUB {
+
+			wrapItemAndSub =<li>|</li>
+		}
+
+	}
+
+}

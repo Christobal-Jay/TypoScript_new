@@ -1,0 +1,24 @@
+plugin.ot_bootstrap3 {
+	settings {
+		projectName = TYPO3 & Bootstrap3
+		homepageUid = 1
+		showPageHeaderAsH1 = 1
+		domain = http://www.example.com
+	}
+}
+
+content.defaultHeaderType = 2
+
+# Image
+styles.content.textmedia.maxW = 1170
+styles.content.textmedia.maxWInText = 570
+
+# Image + Text
+styles.content.textmedia.linkWrap.width = 800
+styles.content.textmedia.linkWrap.height = 600
+
+# Lightbox
+styles.content.textmedia.linkWrap.lightboxEnabled = 1
+
+styles.content.loginform.pid = 0
+

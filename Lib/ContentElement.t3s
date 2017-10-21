@@ -1,0 +1,24 @@
+/**
+ * fluid_styled_content
+ *
+ * - New directories for templates, layouts and partials
+ * - Valid HTML for lightboxes
+ */
+lib.contentElement {
+	templateRootPaths {
+		20 = EXT:ot_bootstrap3/Resources/Private/Templates/Content/
+	}
+	partialRootPaths {
+		20 = EXT:ot_bootstrap3/Resources/Private/Partials/Content/
+	}
+	layoutRootPaths {
+		20 = EXT:ot_bootstrap3/Resources/Private/Layouts/Content/
+	}
+	settings {
+		media {
+			popup {
+				linkParams.ATagParams.dataWrap =  class="{$styles.content.textmedia.linkWrap.lightboxCssClass}" data-lightbox="{$styles.content.textmedia.linkWrap.lightboxRelAttribute}" data-title="{file:current:title}<small>{file:current:description}</small>"
+			}
+		}
+	}
+}
