@@ -9,6 +9,7 @@ plugin {
 			partialRootPaths.20 = EXT:ot_bootstrap3/Resources/Private/Partials/Ext/Form/
 			layoutRootPaths.20 = EXT:ot_bootstrap3/Resources/Private/Layouts/Ext/Form/
 			layoutRootPaths.20 = EXT:ot_bootstrap3/Resources/Private/Layouts/Ext/Form/
+			layoutRootPaths.20 = EXT:ot_bootstrap3/Resources/Private/Layouts/Ext/Form/
 		}
 	}
 }
